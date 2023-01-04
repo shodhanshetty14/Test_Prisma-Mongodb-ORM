@@ -23,6 +23,28 @@ app.post("/books", async (req, res) => {
     res.status(200).json(book);
 })
 
+app.post("/authors", async (req, res) => {
+    const { name, gender, email } = req.body;
+    const author = await prisma.author.create({
+        data: {
+            name,
+            gender,
+            email
+        }
+    })
+    res.status(200).json(author);
+});
+
+app.post("/publisher", async (req, res) => {
+    const { name, email } = req.body;
+    const publisher = await prisma.publisher.create({
+        data: {
+            name,
+            email
+        }
+    })
+    res.status(200).json(publisher);
+})
 
 // PORT
 const PORT = 3000;
